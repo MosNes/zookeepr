@@ -50,6 +50,11 @@ function filterByQuery (query, animalsArray) {
     return filteredResults;
 }
 
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+}
+
 //creates route to GET animal data
 //route is the first parameter in the get() function, corresponds to what user needs to add to the / after the domain
 //req = request sent by client
@@ -63,7 +68,17 @@ app.get('/api/animals', (req, res) => {
     }
     //return array of animal objects as json
     res.json(results);
-})
+});
+
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    if (result){
+        res.json(result);
+    } else {
+        res.send(404);
+    }
+    
+});
 
 //starts listening for requests on port 3001
 //if called on a local PC, starts the server on http://localhost:PORT/
