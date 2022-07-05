@@ -17,7 +17,7 @@ function filterByQuery (query, animalsArray) {
     if (query.personalityTraits) {
         //save personality traits as a dedicated array.
         //If personality traits is a string, place it into a new array and save.
-        if(typeof personalityTraits === 'string'){
+        if (typeof query.personalityTraits === 'string') {
             personalityTraitsArray = [query.personalityTraits];
         } else {
             personalityTraitsArray = query.personalityTraits;
@@ -31,7 +31,8 @@ function filterByQuery (query, animalsArray) {
             //array will then only contain entries that contain the trait.
             //so at the end we'll have an array of animals that have every one of the traits
             // when the .forEach() loop is finished.
-            filteredResults = filter( animal => animal.personalityTraits.indexOf(trait) !== -1);
+            filteredResults = filteredResults.filter(
+                animal => animal.personalityTraits.indexOf(trait) !== -1);
         });
     }
 
