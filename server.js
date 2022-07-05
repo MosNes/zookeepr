@@ -3,6 +3,8 @@ const express = require('express');
 //gets json object of all animal data
 const { animals } = require('./data/animals.json');
 
+const PORT = process.env.PORT || 3001;
+
 //creates instance of an express server
 //invoked by `npm start` in terminal
 // use Ctrl+C to end the server
@@ -65,6 +67,6 @@ app.get('/api/animals', (req, res) => {
 
 //starts listening for requests on port 3001
 //if called on a local PC, starts the server on http://localhost:PORT/
-app.listen(3001, () => {
-    console.log(`API Server now on port 3001!`);
+app.listen(PORT, () => {
+    console.log(`API Server now listening on port ${PORT}!`);
 });
