@@ -1,4 +1,5 @@
-//Dependencies and global variables
+//-----DEPENDENCIES AND GLOBAL VARIABLES-----------------------------------------
+
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -13,11 +14,20 @@ const PORT = process.env.PORT || 3001;
 // use Ctrl+C to end the server
 const app = express();
 
+//-----REQUIRED MIDDLEWARE-------------------------------------------------------
+
 //both of these are required to receive and interpret POST requests
 //parse incoming string or array
 app.use(express.urlencoded({ extended: true }));
 //parse incoming JSON data
 app.use(express.json());
+
+//required to serve static assets like front-end js and CSS
+//makes the whole 'public' folder available
+//otherwise would need to create endpoints for each js and css file for each page
+app.use(express.static('public'));
+
+//------FUNCTIONS----------------------------------------------------------------
 
 function filterByQuery(query, animalsArray) {
     //creates an empty array for personality traits
@@ -64,6 +74,7 @@ function findById(id, animalsArray) {
     return result;
 }
 
+//creates an animal object, adds it to animalsArray and then writes that array to a JSON file
 function createNewAnimal(body, animalsArray) {
     const animal = body;
     animalsArray.push(animal);
@@ -74,6 +85,7 @@ function createNewAnimal(body, animalsArray) {
     return animal;
 }
 
+//data validation for creating new animals
 function validateAnimal(animal) {
     if (!animal.name || typeof animal.name != 'string') {
         return false;
@@ -89,6 +101,8 @@ function validateAnimal(animal) {
     }
     return true;
 }
+
+//------------ROUTES-------------------------------------
 
 //creates route to GET animal data
 //route is the first parameter in the get() function, corresponds to what user needs to add to the / after the domain
@@ -129,6 +143,11 @@ app.post('/api/animals', (req, res) => {
 
         res.json(animal);
     }
+});
+
+//serves the index.html file when no route is presented by client
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 //starts listening for requests on port 3001
