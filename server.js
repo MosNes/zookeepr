@@ -1,3 +1,8 @@
+//ternary operator (expression) ? (if expression is true do this) : (if expression is false do this);
+
+//use npm install nodemon, will restart server each time you change the code
+//'npm install nodemon', then run with 'nodemon server.js'
+
 //-----DEPENDENCIES AND GLOBAL VARIABLES-----------------------------------------
 
 const express = require('express');
@@ -148,6 +153,22 @@ app.post('/api/animals', (req, res) => {
 //serves the index.html file when no route is presented by client
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+//serves the animals.html file
+app.get('/animals', (req,res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'))
+});
+
+//serves the zookeeper.html file
+app.get('/zookeepers', (req,res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'))
+});
+
+//serves the index.html file if the user specifies an endpoint that doesn't exist
+//'wildcard' route must be placed after all other routes so that it doesn't conflict with the predefined routes
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
 });
 
 //starts listening for requests on port 3001

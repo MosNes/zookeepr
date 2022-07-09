@@ -118,6 +118,16 @@
         "ornery"
       ],
       "id": "11"
+    },
+    {
+      "name": "Loki",
+      "species": "Lemur",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry",
+        "goofy"
+      ],
+      "id": "12"
     }
   ]
 }
