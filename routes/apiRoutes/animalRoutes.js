@@ -1,3 +1,5 @@
+//this file collects all of the animal-related API routes into a single file for exporting to index.js
+
 //-----DEPENDENCIES AND GLOBAL VARIABLES-----------------------------------------
 const {filterByQuery, findById, createNewAnimal, validateAnimal} = require('../../lib/animals');
 const { animals } = require('../../data/animals.json');

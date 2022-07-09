@@ -1,3 +1,5 @@
+//this index.js collects all of the HTML-related routes into a single file for exporting to server.js
+
 //-----DEPENDENCIES AND GLOBAL VARIABLES-----------------------------------------
 const path = require('path');
 const router = require('express').Router();
