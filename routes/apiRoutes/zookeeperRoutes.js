@@ -30,7 +30,7 @@ router.get("/zookeepers/:id", (req, res) => {
 });
 
 //POST route to add Zookeeper
-router.get("/zookeepers", (req,res) => {
+router.post("/zookeepers", (req,res) => {
     req.body.id = zookeepers.length.toString();
 
     if (!validateZookeeper(req.body)) {

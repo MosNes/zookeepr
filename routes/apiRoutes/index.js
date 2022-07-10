@@ -3,11 +3,10 @@
 //-----DEPENDENCIES AND GLOBAL VARIABLES-----------------------------------------
 const router = require('express').Router();
 const animalRoutes = require('../apiRoutes/animalRoutes');
-const zookeeperRoutes = require('../apiRoutes/zookeeperRoutes');
 
 //-----MIDDLEWARE-----------------------------------------
 router.use(animalRoutes);
-router.use(zookeeperRoutes);
+router.use(require('./zookeeperRoutes'));
 
 
 module.exports = router;
